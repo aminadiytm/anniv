@@ -3,11 +3,11 @@ const urlsToCache = [
   "./",
   "./src/index.html",
   "./src/output.css",
-  "./assets/img1.jpg",
-  "./assets/img2.jpg",
-  "./assets/img3.jpg",
-  "./assets/img4.jpg",
-  "./assets/Logo.png",
+  "./src/assets/img1.jpg",
+  "./src/assets/img2.jpg",
+  "./src/assets/img3.jpg",
+  "./src/assets/img4.jpg",
+  "./src/assets/Logo.png",
 ];
 
 // Install SW & cache files
