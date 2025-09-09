@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#ec4899" />
-  <!-- iOS support -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Anniversary">
@@ -14,6 +13,8 @@
   <link rel="stylesheet" href="./output.css">
   <link rel="apple-touch-icon" sizes="180x180" href="./asset/Logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #fccee8; }
     h1, h2 { font-family: 'Dancing Script', cursive; }
@@ -22,6 +23,8 @@
 
   </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <body class="overflow-hidden scroll-smooth text-gray-800">
 
   <!-- LOADING PAGE -->
@@ -33,7 +36,7 @@
   <!-- INTRO PAGE -->
   <div id="introPage" class="fixed inset-0 flex flex-col justify-center items-center bg-gradient-to-b from-pink-200 to-pink-100 z-50 text-center hidden">
     <h1 class="text-4xl font-bold text-pink-700 mb-10 animate-bounce">Hello My World 🌸</h1>
-    <img src="./asset/img1.jpg" alt="Intro Image" class="rounded-2xl shadow mb-10 w-44">
+    <img src="./asset/img1.jpg" alt="Intro Image" class="rounded-2xl shadow mb-10 w-64">
     <button id="startBtn" class="px-6 py-3 bg-pink-500 text-white rounded-full shadow-lg hover:bg-pink-600 transition mt-10">
       Start 💕
     </button>
@@ -43,39 +46,49 @@
     <div id="mainContent" class="opacity-0 pointer-events-none">
 
     <!-- Hero -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-b from-pink-100 via-white to-white">
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-b from-pink-100 via-white to-white pb-10">
       <img src="./asset/img2.jpg" 
-           class="rounded-full shadow-xl mb-6 w-64" alt="Couple">
+           class="rounded-full shadow-xl mb-6 w-64 mt-6" alt="Couple">
       <h1 class="text-5xl text-pink-700">Happy Anniversary Sayang 💖</h1>
       <p class="mt-4 text-base italic text-gray-600 max-w-sm leading-relaxed">
-        Udah sejauh ini aja kita bareng-bareng, rasanya gila banget ya.  
-        Aku nggak pernah nyangka bisa punya cerita indah gini sama kamu.  
-        Makasih udah bikin hidupku lebih berwarna.  
+        Terimakasiii untuk hari-harinya. Terimakasi untuk cintanya, sayangnya, perhatiannya selama ini. Semoga kita sama sama terus yaaaa
       </p>
     </section>
 
-    <!-- Our Story Slideshow -->
-    <section id="story" class="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-6 text-center relative">
-      <h2 class="text-4xl text-pink-600 mb-10">Cerita Kita ✨</h2>
+    <section id="story" class="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-10 text-center">
+      <h2 class="text-4xl text-pink-600 mb-10 mt-3">Memories ✨</h2>
 
-      <div class="relative w-full max-w-sm h-64 overflow-hidden rounded-2xl shadow-lg">
-        <!-- Slide 1 -->
-        <div class="absolute inset-0 opacity-100 transition-opacity duration-1000 flex flex-col justify-center items-center slide">
-          <img src="./asset/img3.jpg" class="rounded-lg mb-4">
-          <p class="text-gray-700 text-sm">Inget nggak? Pertama kali ketemu, aku langsung deg-degan parah 🙈</p>
+      <div class="swiper w-full max-w-sm rounded-2xl shadow-lg">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide flex flex-col justify-start items-center p-4 h-[500px]">
+            <div class="w-full h-[350px] overflow-hidden rounded-lg mb-4">
+              <img src="./asset/img3.jpg" class="w-full h-full object-cover">
+            </div>
+            <!-- <p class="text-gray-700 text-sm text-center">Inget nggak? Pertama kali ketemu, aku langsung deg-degan parah 🙈</p> -->
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide flex flex-col justify-start items-center p-4 h-[500px]">
+            <div class="w-full h-[350px] overflow-hidden rounded-lg mb-4">
+              <img src="./asset/img4.jpg" class="w-full h-full object-cover">
+            </div>
+            <!-- <p class="text-gray-700 text-sm text-center">Jalan bareng pertama kita... sumpah itu salah satu hari paling seru ❤️</p> -->
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide flex flex-col justify-start items-center p-4 h-[500px]">
+            <div class="w-full h-[350px] overflow-hidden rounded-lg mb-4">
+              <img src="./asset/img1.jpg" class="w-full h-full object-cover">
+            </div>
+            <!-- <p class="text-gray-700 text-sm text-center">Hari itu aku sadar, aku nggak mau kehilangan kamu lagi 💍</p> -->
+          </div>
         </div>
-        <!-- Slide 2 -->
-        <div class="absolute inset-0 opacity-0 transition-opacity duration-1000 flex flex-col justify-center items-center slide">
-          <img src="./asset/img4.jpg" class="rounded-lg mb-4">
-          <p class="text-gray-700 text-sm">Jalan bareng pertama kita... sumpah itu salah satu hari paling seru ❤️</p>
-        </div>
-        <!-- Slide 3 -->
-        <div class="absolute inset-0 opacity-0 transition-opacity duration-1000 flex flex-col justify-center items-center slide">
-          <img src="./asset/img1.jpg" class="rounded-lg mb-4">
-          <p class="text-gray-700 text-sm">Hari itu aku sadar, aku nggak mau kehilangan kamu lagi 💍</p>
-        </div>
+
+        <div class="swiper-pagination"></div>
       </div>
     </section>
+
 
     <!-- Love Letter -->
     <section class="min-h-screen flex flex-col justify-center items-center px-6 bg-white text-center">
@@ -84,7 +97,7 @@
         Buka Surat 💕
       </button>
       <div id="letterContent" class="max-w-md mt-6 text-gray-600 italic leading-relaxed text-justify hidden opacity-0 transition-opacity duration-700">
-        Sayang,  
+        Sayangku cintakuu cantikku maniskuu,  
         Aku cuma mau bilang makasih banget udah ada di hidupku.  
         Kamu bikin hariku jauh lebih indah, penuh tawa, penuh rasa nyaman.  
         Aku janji bakal terus jagain hati kamu, nemenin kamu susah seneng,  
@@ -94,7 +107,7 @@
     </section>
 
     <!-- Promise -->
-    <section class="min-h-screen flex flex-col justify-center items-center px-6 bg-gradient-to-b from-white to-pink-100">
+    <!-- <section class="min-h-screen flex flex-col justify-center items-center px-6 bg-gradient-to-b from-white to-pink-100">
       <h2 class="text-4xl text-pink-700 mb-6">Janji Aku 🤝</h2>
       <p class="text-gray-700 max-w-sm text-center leading-relaxed">
         Aku janji bakal terus jadi rumah buat kamu.  
@@ -102,22 +115,22 @@
         Aku janji bakal bikin kamu ketawa tiap hari, biar hidup kita selalu seru.  
       </p>
       <img src="https://placehold.co/150/png?text=❤️" alt="Promise" class="mt-6">
-    </section>
+    </section> -->
 
     <!-- Closing -->
     <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-t from-pink-50 via-white to-white">
-      <img src="./asset/img1.jpg" class="rounded-full shadow-lg mb-6">
+      <img src="./asset/img1.jpg" class="rounded-full shadow-lg mb-6 w-64 mt-6">
       <h2 class="text-4xl text-pink-700">Selamanya Bareng Kamu 💕</h2>
-      <p class="mt-4 text-gray-600 max-w-sm leading-relaxed italic">
+      <!-- <p class="mt-4 text-gray-600 max-w-sm leading-relaxed italic">
         Kamu tuh rumahku, tempat aku pulang, tempat aku bahagia.  
         Sama kamu, aku yakin "selamanya" itu beneran ada.  
-      </p>
+      </p> -->
       <div class="mt-8 bg-white px-6 py-3 rounded-xl shadow-lg">
         <p class="text-pink-700 font-semibold">Next Anniversary in:</p>
         <p id="countdown" class="text-xl font-bold mt-2">365 hari lagi 🎉</p>
       </div>
-      <button class="mt-6 bg-pink-600 text-white px-6 py-2 rounded-full shadow hover:bg-pink-700 transition">
-        Putar Lagu Kita 🎶
+      <button class="mt-6 mb-6 bg-pink-600 text-white px-6 py-2 rounded-full shadow hover:bg-pink-700 transition">
+        🎶
       </button>
     </section>
 
@@ -218,6 +231,21 @@
         .then(reg => console.log("Service Worker registered:", reg.scope))
         .catch(err => console.log("Service Worker failed:", err));
     }
+
+    // Swiper initialization
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false, // tetap autoplay walau user swipe
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 1,
+    spaceBetween: 20,
+  });
 
   </script>
 </body>
