@@ -1,0 +1,20 @@
+{
+  "name": "My Love App",
+  "short_name": "LoveApp",
+  "start_url": "./src/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ec4899",
+  "icons": [
+    {
+      "src": "assets/Logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/Logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
