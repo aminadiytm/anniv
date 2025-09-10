@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#ec4899" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Anniversary">
-
   <title>Anniversary💕</title>
   <link rel="stylesheet" href="./output.css">
   <link rel="apple-touch-icon" sizes="180x180" href="./asset/Logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+  <link rel="shortcut icon" href="./asset/Logo.png" type="image/x-icon">
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #fccee8; }
     h1, h2 { font-family: 'Dancing Script', cursive; }
     .fade-out { opacity: 0; transition: opacity 1s ease; }
     .fade-in { opacity: 1; transition: opacity 1s ease; }
-
-  </style>
+    
+    </style>
+    <audio id="bgMusic" src="./asset/lagu.mp3"></audio>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -35,9 +34,9 @@
 
   <!-- INTRO PAGE -->
   <div id="introPage" class="fixed inset-0 flex flex-col justify-center items-center bg-gradient-to-b from-pink-200 to-pink-100 z-50 text-center hidden">
-    <h1 class="text-4xl font-bold text-pink-700 mb-10 animate-bounce">Hello My World 🌸</h1>
+    <h1 class="text-4xl font-bold text-pink-700 mb-10">Hello My World 🌸</h1>
     <img src="./asset/img1.jpg" alt="Intro Image" class="rounded-2xl shadow mb-10 w-64">
-    <button id="startBtn" class="px-6 py-3 bg-pink-500 text-white rounded-full shadow-lg hover:bg-pink-600 transition mt-10">
+    <button id="startBtn" class="animate-bounce px-6 py-3 bg-pink-500 text-white rounded-full shadow-lg hover:bg-pink-600 transition mt-10">
       Start 💕
     </button>
   </div>
@@ -139,8 +138,39 @@
   <script>
     // Loading screen
     const loadingPage = document.getElementById("loadingPage");
-    
-    window.addEventListener("load", () => {
+    const introPage = document.getElementById("introPage");
+    const bgMusic = document.getElementById("bgMusic");
+    let musicStarted = false;
+
+    // reset audio ke posisi awal atau custom start
+    function resetAudio(startTime = 0) {
+      bgMusic.pause();
+      bgMusic.currentTime = startTime; // misal 0 atau 122 detik
+    }
+
+    // mainkan audio sekali
+    function playAudio(startTime = 0) {
+      if (!musicStarted) {
+        resetAudio(startTime);
+        bgMusic.play().then(() => {
+          musicStarted = true;
+        }).catch(err => console.log("Autoplay gagal:", err));
+      }
+    }
+
+    // loop manual dari posisi tertentu
+    bgMusic.addEventListener("ended", () => {
+      // hanya loop jika sudah mulai
+      if (musicStarted) {
+        bgMusic.currentTime = 110; // start dari 2:02
+        bgMusic.play();
+      }
+    });
+
+    // contoh: start audio setelah klik pertama
+    window.addEventListener("click", () => {
+      playAudio(110); // mulai dari 2:02    
+      // loading screen
       setTimeout(() => {
         loadingPage.classList.add("fade-out");
         setTimeout(() => {
@@ -148,11 +178,12 @@
           introPage.classList.remove("hidden");
           introPage.classList.add("fade-in");
         }, 1000);
-      }, 2000); // tampil loading 2 detik
+      }, 2000);
     });
     
+    
     // Intro Start Button
-    const introPage = document.getElementById("introPage");
+    // const introPage = document.getElementById("introPage");
     const mainContent = document.getElementById("mainContent");
     const startBtn = document.getElementById("startBtn");
 
@@ -161,6 +192,8 @@
       setTimeout(() => {
         introPage.style.display = "none";
         mainContent.classList.remove("hidden");
+        bgMusic.play();
+
       }, 1000);
     });
 
@@ -226,26 +259,20 @@
       }, 1000);
     });
 
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("../service-worker.js")
-        .then(reg => console.log("Service Worker registered:", reg.scope))
-        .catch(err => console.log("Service Worker failed:", err));
-    }
-
     // Swiper initialization
-  const swiper = new Swiper('.swiper', {
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false, // tetap autoplay walau user swipe
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    slidesPerView: 1,
-    spaceBetween: 20,
-  });
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false, // tetap autoplay walau user swipe
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      slidesPerView: 1,
+      spaceBetween: 20,
+    });
 
   </script>
 </body>
