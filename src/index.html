@@ -16,6 +16,8 @@
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="shortcut icon" href="./asset/Logo.png" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
     <style>
       body {
         font-family: "Inter", sans-serif;
@@ -53,8 +55,8 @@
       id="introPage"
       class="fixed inset-0 flex flex-col justify-center items-center bg-gradient-to-b from-pink-200 to-pink-100 z-50 text-center hidden"
     >
-      <h1 class="text-4xl font-bold text-pink-700 mb-10">Hello My World 🌸</h1>
-      <img src="./asset/img8.jpeg" alt="Intro Image" class="rounded-2xl shadow mb-5 w-64" />
+      <h1 class="text-4xl font-bold text-pink-700 mb-10 animate-bounce">Hello My World 🌸</h1>
+      <img src="./asset/img10.jpeg" alt="Intro Image" class="rounded-2xl shadow mb-5 w-64" />
       <button
         id="startBtn"
         class="px-6 py-3 bg-pink-500 text-white rounded-full shadow-lg hover:bg-pink-600 transition mt-5"
@@ -154,11 +156,29 @@
           <p id="countdown" class="text-xl font-bold mt-2">365 hari lagi 🎉</p>
         </div>
         <button
+          id="giftBtn"
           class="mt-6 mb-6 bg-pink-600 text-white px-6 py-2 rounded-full shadow hover:bg-pink-700 transition"
         >
           Gift 🎁✨
         </button>
       </section>
+    </div>
+
+    <!-- Modal Gift -->
+    <div
+      id="giftModal"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50"
+    >
+      <div class="bg-white rounded-2xl shadow-lg p-6 text-center max-w-sm animate-bounce-in">
+        <img src="./asset/Gift.png" class="w-32 mx-auto mb-4 animate-bounce mt-6" />
+        <p class="mt-2 text-gray-600 italic">Bisa diambil di ibu kost yaa hehe 💕</p>
+        <button
+          id="closeGift"
+          class="mt-4 px-6 py-2 bg-pink-500 text-white rounded-full shadow hover:bg-pink-600"
+        >
+          Tutup ✨
+        </button>
+      </div>
     </div>
 
     <script>
@@ -299,6 +319,58 @@
         },
         slidesPerView: 1,
         spaceBetween: 20,
+      });
+
+      // gift
+      document.getElementById("giftBtn").addEventListener("click", () => {
+        confetti({
+          particleCount: 200,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      });
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "-2rem";
+        heart.style.fontSize = Math.random() * 24 + 16 + "px";
+        heart.style.animation = "fall 4s linear forwards";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+
+      document.getElementById("giftBtn").addEventListener("click", () => {
+        for (let i = 0; i < 20; i++) {
+          setTimeout(createHeart, i * 200);
+        }
+      });
+
+      const giftBtn = document.getElementById("giftBtn");
+      const giftModal = document.getElementById("giftModal");
+      const closeGift = document.getElementById("closeGift");
+
+      giftBtn.addEventListener("click", () => {
+        // tampilkan modal
+        giftModal.classList.remove("hidden");
+
+        // jalankan confetti
+        confetti({
+          particleCount: 200,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+
+        // animasi hati jatuh
+        for (let i = 0; i < 20; i++) {
+          setTimeout(createHeart, i * 200);
+        }
+      });
+
+      closeGift.addEventListener("click", () => {
+        giftModal.classList.add("hidden");
       });
     </script>
   </body>
